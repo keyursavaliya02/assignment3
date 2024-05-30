@@ -42,3 +42,44 @@ func promptUser() (float64, string, error) {
 
 	return value, unit, nil
 }
+package main
+
+import (
+	"bufio"
+	"fmt"
+	"os"
+	"strings"
+)
+
+func main() {
+	for {
+		value, unit, err := promptUser()
+		if err != nil {
+			fmt.Println("Error:", err)
+			continue
+		}
+
+		switch unit {
+		case "F":
+			celsius := FahrenheitToCelsius(value)
+			fmt.Printf("%.2f F is %.2f C\n", value, celsius)
+		case "C":
+			fahrenheit := CelsiusToFahrenheit(value)
+			fmt.Printf("%.2f C is %.2f F\n", value, fahrenheit)
+		}
+
+		reader := bufio.NewReader(os.Stdin)
+		fmt.Print("Do you want to convert another temperature? (y/n): ")
+		response, err := reader.ReadString('\n')
+		if err != nil {
+			fmt.Println("Error reading response:", err)
+			continue
+		}
+		response = strings.TrimSpace(response)
+		if strings.ToLower(response) != "y" {
+			break
+		}
+	}
+
+	fmt.Println("Exit!")
+}
