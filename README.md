@@ -18,4 +18,4 @@ This is a simple Go program that converts temperatures between Fahrenheit and Ce
 ### Installation
 1. Clone the repository to your local machine:
    ```sh
-    git clone https://github.com/keyursavaliya02/assignment3
+    https://github.com/keyursavaliya02/assignment3
